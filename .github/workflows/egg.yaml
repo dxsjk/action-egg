@@ -3,10 +3,10 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    -steps:
+    steps:
       - run: pwd
       - run: ls
-  Job2:
+  job2:
     runs-on: windows-latest
-    -steps:
+    steps:
       - run: node -v
