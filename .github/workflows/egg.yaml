@@ -1,12 +1,11 @@
 on: push
 
 jobs:
-  job1:
+  npm-build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: pwd
-      - run: ls
-  job2:
-    runs-on: windows-latest
-    steps:
-      - run: node -v
+      - run: npm --version
+      - run: npm install
+      - run: npm run build
