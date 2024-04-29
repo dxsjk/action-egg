@@ -1,4 +1,4 @@
-name: 打包React项目
+name: 构建镜像并推送到Docker hub
 on: push
 
 permissions:
@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: 读取仓库内容
         uses: actions/checkout@v4
-      - name: 安装依赖和构建
-        run: |
-          npm install
-          npm run build
-      - name: 部署 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: 登录Docker Hub
+        uses: docker/login-action@v2
         with:
-          branch: gh-pages
-          folder: build
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: 构建镜像并推送到Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tag: 617qe/qe-react-app:latest
