@@ -21,4 +21,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tag: 617qe/qe-react-app:latest
+          tags: 617qe/qe-react-app:latest
